@@ -1,0 +1,37 @@
+<!DOCTYPE HTML>
+<html lang = "en">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="device-width">
+		<link type="text/css" rel="stylesheet" media="screen" href="gradient.css"/>
+		<script language = "javascript" type="text/javascript" src="gradient.js"></script>
+		<title>Drawing on a Canvas</title>
+	</head>
+	<body>
+		<header>
+		</header>
+		<main>
+			<canvas id="myCanvas", width="600", height="600"></canvas>
+			<script>
+				var canvas = document.getElementById("myCanvas");
+				var canvasContext = canvas.getContext("2d");
+				var size = 600;
+				var imgData = canvasContext.createImageData(size, size);
+				
+				var full = 255;
+				var pixel = 4;
+				var pixelSize = size * pixel;
+				for (var i = 0; i < imgData.data.length; i+=pixel)
+				{
+					imgData.data[i+0] = ((i / size) / pixelSize) * full;
+					imgData.data[i+1] = ((i % pixelSize) / pixelSize) * full;
+					imgData.data[i+2] = 0;
+					imgData.data[i+3] = full;
+				}
+				canvasContext.putImageData(imgData, 0, 0);
+			</script>
+		</main>
+		<footer>
+		</footer>
+	</body>
+</html>

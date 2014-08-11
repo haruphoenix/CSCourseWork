@@ -1,0 +1,36 @@
+<!DOCTYPE HTML>
+<html lang = "en">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="device-width">
+		<link type="text/css" rel="stylesheet" media="screen" href="gradient.css"/>
+		<script language = "javascript" src="RenderBuffer.js"></script>
+		<script language = "javascript" type="text/javascript" src="SceneDrawer.js"></script>
+		<title>Drawing on a Canvas</title>
+	</head>
+	<body>
+		<header>
+		</header>
+		<main>
+			<canvas id="myCanvas", width="500", height="100"></canvas>
+			<script>
+			        // Let RenderBuffer handle creating the imageData and context
+				var renderBuffer = new RenderBuffer("myCanvas");
+
+				// Set Assigned Colors
+				var upperLeft  = color(1, 0, 1  , 1);
+				var upperRight = color(1, 1, 0  , 1);
+				var lowerLeft  = color(0, 0, 0.5, 1);
+				var lowerRight = color(0, 0, 0  , 1);
+
+				// Draw Gradient
+				drawGradient(renderBuffer, upperLeft, upperRight, lowerLeft, lowerRight);
+
+				// Display Gradient to the Screen
+				renderBuffer.flush();
+			</script>
+		</main>
+		<footer>
+		</footer>
+	</body>
+</html>

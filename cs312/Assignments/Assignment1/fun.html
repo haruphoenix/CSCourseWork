@@ -1,0 +1,139 @@
+<!DOCTYPE HTML>
+<html lang = "en">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="device-width">
+		<link type="text/css" rel="stylesheet" media="screen" href="gradient.css"/>
+		<script language = "javascript" type="text/javascript" src="gradient.js"></script>
+		<title>Drawing on a Canvas</title>
+	</head>
+	<body>
+		<header>
+		</header>
+		<main>
+			<canvas id="myCanvas", width="600", height="600"></canvas>
+			<script>
+				var canvas = document.getElementById("myCanvas");
+				var canvasContext = canvas.getContext("2d");
+				var size = 600;
+				var imgData = canvasContext.createImageData(size, size);
+                                var COLORS = new Array(0, 1, 2);
+				var RED   = 0;
+				var GREEN = 1;
+				var BLUE  = 2;
+				var ALPHA = 3;
+				var PIXEL = 4;
+				var MAX   = 255;
+				var RATIO = MAX / size;
+				var TOP_LEFT     = 0;
+				var TOP_RIGHT    = 1;
+				var BOTTOM_RIGHT = 2;
+				var BOTTOM_LEFT  = 3;
+				
+				function setPixel(imgData, x, y, r, g, b, a)
+				{
+					var color = ((y * imgData.width * PIXEL) + (x * PIXEL));
+				        var red   = color + RED;
+					var green = color + GREEN;
+					var blue  = color + BLUE;
+					var alpha = color + ALPHA;
+					imgData.data[red  ] = r;
+					imgData.data[green] = g;
+					imgData.data[blue ] = b;
+					imgData.data[alpha] = a;
+				}
+
+				function setGradient(imgData, colorOne, colorTwo, corner)
+				{
+				   var size = imgData.width;
+				   var colors = new Array(0, 0, 0);
+				   var colorOneStart = 0;
+				   var colorTwoStart = 0;
+				   var colorOneIncrement = 0;
+				   var colorTwoIncrement = 0;
+				   switch (corner)
+				   {
+				      case 0:
+				          colorOneStart = 0;
+				          colorTwoStart = 0;
+				          colorOneIncrement = 1;
+				          colorTwoIncrement = 1;
+				          break;
+				      case 1:
+				          colorOneStart = 0;
+				          colorTwoStart = size;
+				          colorOneIncrement = 1;
+				          colorTwoIncrement = -1;
+                                          break;
+				      case 2:
+				          colorOneStart = size;
+				          colorTwoStart = size;
+				          colorOneIncrement = -1;
+				          colorTwoIncrement = -1;
+                                          break;
+				      case 3:
+				          colorOneStart = size;
+				          colorTwoStart = 0;
+				          colorOneIncrement = -1;
+				          colorTwoIncrement = 1;
+                                          break;
+                                      default:
+                                          break;
+				   }
+				   colors[colorTwo] = colorTwoStart;
+				   for (var x = 0; x < size; x++)
+				   {
+				      colors[colorOne] = colorOneStart;
+				      for (var y = 0; y < size; y++)
+				      {
+					  setPixel(imgData, x, y, colors[RED] * 
+							  RATIO,  colors[GREEN] * 
+							  RATIO,  colors[BLUE], MAX);
+					  colors[colorOne] += colorOneIncrement;
+				      }
+				      colors[colorTwo] += colorTwoIncrement;
+				   }
+				}
+
+				function getNumber()
+				{
+				   return Math.floor(Math.random() * 4);
+				}
+
+				var n1 = 0;
+				var n2 = 0;
+				var n3 = 0;
+			        var count = 0;
+
+				function myTimer()
+				{
+				   setGradient(imgData, COLORS[n1], COLORS[n2], n3);
+				   canvasContext.putImageData(imgData, 0, 0);
+				   n3    = (n3    + 1) % 4;
+                                   count = (count + 1) % 4;
+				   switch (count)
+                                   {
+                                      case 0:
+                                         n1 = (n1 + 1) % 3;
+					 break;
+                                      case 1:
+				         n1 = (n1 + 1) % 3;
+				         break;
+                                      case 2:
+                                         n2 = (n2 + 1) % 3;
+                                         break;
+				      case 3:
+                                         n2 = (n2 + 1) % 3;
+                                         break;
+                                      default:
+                                         break;
+				   }
+				}
+				window.setInterval(function(){myTimer()}, 150);
+
+			</script>
+		</main>
+		<footer>
+		</footer>
+	</body>
+</html>

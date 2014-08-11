@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Matrix Vertex Shader</title>
+</head>
+
+<body bgcolor="black">
+   <canvas id="myCanvas" width="100" height="100" style="border-style:solid;border-width:1px;border-color:white" >
+      Get a Real Browser that supports HTML5
+   </canvas>
+
+   <script language="JavaScript" src="IdentityShaders.js"></script>
+   <script language="JavaScript" src="MatrixMath.js"></script>
+   <script language="JavaScript" src="MatrixTransformVertShader.js"></script>
+   <script language="JavaScript" src="RenderBuffer.js"></script>
+   <script language="JavaScript" src="RenderEngine.js"></script>
+   
+   <script>
+
+      var renderBuffer = new RenderBuffer("myCanvas");
+      
+      // Hardcode the list of vertices with the position at 0 and the color at 1
+      var positionIdx = 0;
+      var colorIdx = 1;
+      var points =
+      [
+         [[-1.0, +1.0, 0, 1], [1.0, 0.0, 0.0, 1.0]], // upper left red
+         [[ 0.0, +1.4, 0, 1], [1.0, 0.5, 0.0, 1.0]], // top
+         [[+1.4,  0.0, 0, 1], [0.0, 1.0, 0.0, 1.0]], // right
+         [[ 0.0, -1.4, 0, 1], [0.0, 1.0, 1.0, 1.0]], // bottom cyan
+         [[-1.4,  0.0, 0, 1], [1.0, 0.0, 1.0, 1.0]], // left magenta
+         [[+1.0, +1.0, 0, 1], [1.0, 1.0, 0.0, 1.0]], // upper right yellow
+         [[-1.0, -1.0, 0, 1], [0.0, 0.0, 1.0, 1.0]], // lower left blue
+         [[+1.0, -1.0, 0, 1], [0.0, 0.5, 0.1, 1.0]], // lower right dark green
+         [[ 0.0,  0.0, 0, 1], [1.0, 1.0, 1.0, 1.0]]  // middle white
+      ];
+
+      // The render engine is used to draw primitives
+      var renderEngine = new RenderEngine(renderBuffer);
+      
+      var transformMatrix =
+      [
+         .5, 0, 0, 0,
+         0, .5, 0, 0,
+         0, 0, 1, 0,
+         0, 0, 0, 1
+      ];
+
+      var vertexShader   = new MatrixTransformShader(positionIdx, transformMatrix);
+      var fragmentShader = new BasicColorFragmentShader(colorIdx);
+      
+      // Draw the list of points with the two shaders' main functions
+      renderEngine.drawPoints(points, vertexShader.main, fragmentShader.main);
+      
+      renderBuffer.flush();
+
+      var degree = 1;
+
+      function timer()
+      {
+         degree++;
+         degree %= 360;
+         var m = multiply4by4(transformMatrix, getRotationMatrix(degree));
+         var vS = new MatrixTransformShader(positionIdx, m);
+         renderEngine.drawPoints(points, vS.main, fragmentShader.main);
+         renderBuffer.flush();
+      }
+
+      window.setInterval(function(){timer()}, 10000);
+
+   </script>
+</body>
+</html>

@@ -1,0 +1,28 @@
+
+#ifndef ARCCANVAS_H
+#define ARCCANVAS_H
+
+#include <GL/glew.h>
+#include <list>
+#include "ArcUtils.h"
+
+class ArcCanvas
+{
+ public:
+  ArcCanvas();
+  ~ArcCanvas();
+  void draw();
+  void addItem(const ArcVertex vertices[], const GLuint indices[]);
+  void generate();
+  void destroy();
+ private:
+  void formArrays();
+  GLuint mVertexArrayID;
+  GLuint mBufferIDs[2]; // Front & Back Buffers
+  std::list<ArcVertex> mVertices;
+  std::list<GLuint>    mIndices;
+  ArcVertex* mVertexArray;
+  GLuint*    mIndexArray;
+};
+
+#endif

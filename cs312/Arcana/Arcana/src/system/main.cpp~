@@ -1,0 +1,10 @@
+#include "ArcApp.h"
+
+int main(int argc, char** argv)
+{
+
+  ArcApp* Application = ArcApp::getInstance();
+  if (Application->initialize() == false) return 1;
+  Application->start();
+  return 0;
+}

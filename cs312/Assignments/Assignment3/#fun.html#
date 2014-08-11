@@ -1,0 +1,170 @@
+<!DOCTYPE HTML>
+<html lang = "en">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="device-width">
+		<link type="text/css" rel="stylesheet" media="screen" href="gradient.css"/>
+		<script language = "javascript" src="RenderBuffer.js"></script>
+		<script language = "javascript" type="text/javascript" src="SceneDrawer.js"></script>
+		<title>Drawing on a Canvas</title>
+	</head>
+	<body>
+		<header>
+		</header>
+		<main>
+			<canvas id="myCanvas", width="500", height="500"></canvas>
+			<script>
+			        // Let RenderBuffer handle creating the imageData and context
+				var renderBuffer = new RenderBuffer("myCanvas");
+
+				var uLR = new Object();
+				uLR.value = 1;
+				uLR.ascending = true;
+				
+				var uLG = new Object();
+				uLG.value = 0;
+				uLG.ascending = false;
+
+				var uLB = new Object();
+				uLB.value = 1;
+				uLG.ascending = true;
+
+				var uRR = new Object();
+				uRR.value = 1;
+				uRR.ascending = false;
+
+				var uRG = new Object();
+				uRG.value = 1;
+				uRG.ascending = true;
+
+				var uRB = new Object();
+				uRB.value = 1;
+				uRB.ascending = false;
+
+				var lLR = new Object();
+				lLR.value = 0;
+				lLR.ascending = true;
+
+				var lLG = new Object();
+				lLG.value = 0;
+				lLG.ascending = false;
+
+				var lLB = new Object();
+				lLB.value = 1;
+				lLB.ascending = true;
+				
+				var lRR = new Object();
+				lRR.value = 0;
+				lRR.ascending = false;
+				
+				var lRG = new Object();
+				lRG.value = 1;
+				lRG.ascending = true;
+
+				var lRB = new Object();
+				lRB.value = 1;
+				lRB.ascending = false;
+
+				function getHigher(color)
+				{
+				   color.value = color.value + .01;
+				   if (color.value >= 1)
+				   {
+				      color.value = 1;
+				      color.ascending = false;
+				   }
+				   return color;
+				}
+
+				function getLower(color)
+				{
+				   color.value = color.value - .01;
+				   if (color.value <= 0)
+				   {
+				      color.value = 0;
+				      color.ascending = true;
+				   }
+				   return color;
+				}
+
+				function changeColors()
+				{
+				   if (uLR.ascending == true) uLR = getHigher(uLR);
+				   else uLR = getLower(uLR);
+				   if (uLG.ascending == true) uLG = getHigher(uLG);
+				   else uLG = getLower(uLG);
+				   if (uLB.ascending == true) uLB = getHigher(uLB);
+				   else uLB = getLower(uLB);
+
+				   if (uRR.ascending == true) uRR = getHigher(uRR);
+				   else uR = getLower(uRR);
+				   if (uRG.ascending == true) uRG = getHigher(uRG);
+				   else uRG = getLower(uRG);
+				   if (uRB.ascending == true) uRB = getHigher(uRB);
+				   else uRB = getLower(uRB);
+
+				   if (lLR.ascending == true) lLR = getHigher(lLR);
+				   else lLR = getLower(lLR);
+				   if (lLG.ascending == true) lLG = getHigher(lLG);
+				   else lLG = getLower(lLG);
+				   if (lLB.ascending == true) lLB = getHigher(lLB);
+				   else lLB = getLower(lLB);
+
+				   if (lRR.ascending == true) lRR = getHigher(lRR);
+				   else lRR = getLower(lRR);
+				   if (lRG.ascending == true) lRG = getHigher(lRG);
+				   else lLG = getLower(lRG);
+				   if (lRB.ascending == true) lRB = getHigher(lRB);
+				   else lRB = getLower(lRB);
+				}
+
+				function RandomColors()
+				{
+				   if (MATH.random() > .5) uLR = getHigher(uLR);
+				   else uLR = getLower(uLR);
+				   if (MATH.random() > .5) uLG = getHigher(uLG);
+				   else uLG = getLower(uLG);
+				   if (MATH.random() > .5) uLB = getHigher(uLB);
+				   else uLB = getLower(uLB);
+
+				   if (MATH.random() > .5) uRR = getHigher(uRR);
+				   else uR = getLower(uRR);
+				   if (MATH.random() > .5) uRG = getHigher(uRG);
+				   else uRG = getLower(uRG);
+				   if (MATH.random() > .5) uRB = getHigher(uRB);
+				   else uRB = getLower(uRB);
+
+				   if (MATH.random() > .5) lLR = getHigher(lLR);
+				   else lLR = getLower(lLR);
+				   if (MATH.random() > .5) lLG = getHigher(lLG);
+				   else lLG = getLower(lLG);
+				   if (MATH.random() > .5) lLB = getHigher(lLB);
+				   else lLB = getLower(lLB);
+
+				   if (MATH.random() > .5) lRR = getHigher(lRR);
+				   else lRR = getLower(lRR);
+				   if (MATH.random() > .5) lRG = getHigher(lRG);
+				   else lLG = getLower(lRG);
+				   if (lRB.ascending == true) lRB = getHigher(lRB);
+				   else lRB = getLower); 
+				}
+
+				function timer()
+				{
+				   //changeColors();
+		                   randomColors();
+				   upperLeft  = color(uLR.value, uLG.value, uLB.value, 1);
+				   upperRight = color(uRR.value, uRG.value, uRB.value, 1);
+				   lowerLeft  = color(lLR.value, lLG.value, lLB.value, 1);
+				   lowerRight = color(lRR.value, lRG.value, lRB.value, 1);
+				   drawGradient(renderBuffer, upperLeft, upperRight, lowerLeft, lowerRight);
+				   renderBuffer.flush();
+				}
+
+				window.setInterval(function(){timer()}, 100);
+			</script>
+		</main>
+		<footer>
+		</footer>
+	</body>
+</html>

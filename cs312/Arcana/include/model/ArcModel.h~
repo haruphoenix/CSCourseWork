@@ -1,0 +1,25 @@
+#ifndef MODEL_H
+#define MODEL_H
+
+class ArcModel
+{
+
+public:
+
+  ArcModel();
+
+  void stopForward();
+  void stopBackward();
+  void stopLeft();
+  void stopRight();
+
+  void moveForward();
+  void moveLeft();
+  void moveRight();
+  void moveBackward();
+
+private:
+
+};
+
+#endif

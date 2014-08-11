@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Draw Lines</title>
+</head>
+
+<body bgcolor="black">
+   <canvas id="canvas1" width="500" height="300" style="border-style:solid;border-width:1px;border-color:white" >
+      Get a Real Browser that supports HTML5
+   </canvas></br>
+   
+   <script language="JavaScript" src="MatrixMath.js"></script>
+   <script language="JavaScript" src="SmoothShaders.js"></script>
+   <script language="JavaScript" src="RenderBuffer.js"></script>
+   <script language="JavaScript" src="RenderEngine.js"></script>
+   <script language="JavaScript" src="ProjectionMatrix.js"></script>
+   
+   <script>
+      var renderBuffer = new RenderBuffer("canvas1");
+         
+      // Hardcode the list of vertices with the position at 0 and the color at 1
+      var positionIdx = 0;
+      var colorIdx = 1;
+      var verts = [
+         [[-100.0, +100.0, 0, 1], [1.0, 0.0, 0.0, 1.0]],
+         [[+100.0, +100.0, 0, 1], [0.0, 1.0, 0.0, 1.0]], // upper left red
+         [[-100.0, -100.0, 0, 1], [0.0, 0.0, 1.0, 1.0]], // middle right green
+         [[+100.0, -100.0, 0, 1], [0.0, 0.0, 0.0, 1.1]]
+      ];
+      var indexList = [0, 1, 2, 3];
+         
+      // The render engine is used to draw primitives
+      var renderEngine = new RenderEngine(renderBuffer);
+         
+      // Make a projection matrix based on the aspect ratio
+      var aspectRatio = renderBuffer.width / renderBuffer.height;
+      var projMatrix = OrthoGraphicProjection(-250, 250, 250, -250, 0, 1);
+         
+      // Make our smooth color shaders
+      //var vertexShader = new MatrixSmoothVertShader(positionIdx, colorIdx, projMatrix);
+      var fragmentShader = new SmoothColorFragShader();
+         
+      // Draw our list of points with the two shaders
+      // (NOTE: main functions are NOT passed this time!)
+      //renderEngine.drawLines(verts, indexList, vertexShader, fragmentShader);
+         
+      // Make sure we can still draw points
+      var points = [
+         [[0, 0, 0, 1], [1.0, 1.0, 1.0, 1.0]]  // middle white
+      ];
+      //renderEngine.drawPoints(points, vertexShader, fragmentShader);
+         
+      // Flush it to make sure we draw
+      //renderBuffer.flush();
+      
+      var degree = 0;
+      timer = function()
+      {
+         degree = degree + 1 / 2 % 360;
+         var dispMatrix = multiply4by4(getTranslationMatrix(0.2, 0, 0), projMatrix);
+         var rotationMatrix = multiply4by4(getRotationMatrix(-degree), dispMatrix); 
+         var vertexShader = new MatrixSmoothVertShader(positionIdx, colorIdx, rotationMatrix);
+         if (degree % 5 == 1) renderEngine.setBackground([0, 0, 0, 1]);
+         renderEngine.drawGradients(verts, indexList, vertexShader, fragmentShader);
+         if (degree % 5 == 0) renderBuffer.flush();
+      }
+
+      // Make a filled in circle using a line
+      window.setInterval(timer, 1);
+
+   </script>
+</body>
+</html>

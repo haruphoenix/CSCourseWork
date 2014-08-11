@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Matrix Vertex Shader</title>
+</head>
+
+<body bgcolor="black">
+   <canvas id="canvas1" width="600" height="600" style="border-style:solid;border-width:1px;border-color:white" >
+      Get a Real Browser that supports HTML5
+   </canvas></br>
+
+   <script language="JavaScript" src="IdentityShaders.js"></script>
+   <script language="JavaScript" src="MatrixMath.js"></script>
+   <script language="JavaScript" src="MatrixTransformVertShader.js"></script>
+   <script language="JavaScript" src="RenderBuffer.js"></script>
+   <script language="JavaScript" src="RenderEngine.js"></script>
+   <script language="JavaScript" src="ProjectionMatrix.js"></script>
+   
+   <script>
+      
+         var renderBuffer = new RenderBuffer("canvas1");
+         
+         var positionIdx = 0;
+         var colorIdx = 1;
+
+         var points = [
+            [[0.0, +10.0, 0, 1], [1.0, 0.0, 0.0, 1.0]], // Top red
+            [[0.0, -10.0, 0, 1], [0.0, 1.0, 0.0, 1.0]], // bottom green
+            [[-10.0, 0.0, 0, 1], [0.0, 1.0, 1.0, 1.0]], // left cyan
+            [[+10.0, 0.0, 0, 1], [1.0, 1.0, 0.0, 1.0]], // right yellow
+            [[0.0,  0.0, 0, 1],  [1.0, 1.0, 1.0, 1.0]]  // middle white
+         ];
+         
+         // The render engine is used to draw primitives
+         var renderEngine = new RenderEngine(renderBuffer);
+         
+         // Make a projection matrix based on x from 2 to 9 and y from -1 to 4
+         var projMatrix = OrthoGraphicProjection(-300, 300, 300, -300, -1, 1); 
+
+         // And still a simple fragment shader
+         var fragmentShader = new BasicColorFragmentShader(colorIdx);
+         
+         var transMatrix1 = [1, 0, 0, 25,
+                            0, 1, 0, 0,
+                            0, 0, 1, 0,
+                            0, 0, 0, 1];
+
+         var transMatrix2 = [1, 0, 0, 150,
+                             0, 1, 0,   0,
+                             0, 0, 1,   0,
+                             0, 0, 0,   1];
+
+         var farOuterAngle = 0;
+         var outerAngle = 0;
+         var angle = 0;
+ 
+         // The larger the value, the more rotations for that unit
+         // + = counter-clockwise - = clockwise
+         //var aInc =  10 /  1;  // Smallest Circle
+         //var bInc =  -9 /  1;  // Middle   Circle
+         //var cInc =  2 /  1;  // Largest  Circle
+         var aInc =  -3 /  1;  // Smallest Circle
+         var bInc =   3 /  2;  // Middle   Circle
+         var cInc =  1 / 10;  // Largest  Circle
+
+         timer = function()
+         {
+            farOuterAngle = (farOuterAngle + cInc) % 360;
+            outerAngle    = (outerAngle    + bInc) % 360;
+            angle         = (angle         + aInc) % 360;
+            var rotationMatrix       = getRotationMatrix(angle);
+            var transRotationMatrix1 = multiply4by4(transMatrix1   , rotationMatrix);
+            var outerRotationMatrix1 = multiply4by4(getRotationMatrix(outerAngle), transRotationMatrix1);
+	    var transRotationMatrix2 = multiply4by4(transMatrix2, outerRotationMatrix1);
+            var outerRotationMatrix2 = multiply4by4(getRotationMatrix(farOuterAngle), transRotationMatrix2); 
+            var transformMatrix      = multiply4by4(projMatrix    , outerRotationMatrix2);
+            var vertexShader         = new MatrixTransformShader(positionIdx, transformMatrix);
+            renderEngine.drawPoints(points, vertexShader.main, fragmentShader.main);
+            renderBuffer.flush();
+	 }
+
+         window.setInterval(timer, 1);
+      
+   </script>
+</body>
+</html>

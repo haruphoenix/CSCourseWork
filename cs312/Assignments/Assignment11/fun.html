@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Draw Lines</title>
+</head>
+
+<body bgcolor="black">
+   <canvas id="canvas1" width="600" height="600" style="border-style:solid;border-width:1px;border-color:white" >
+      Get a Real Browser that supports HTML5
+   </canvas></br>
+   
+   <script language="JavaScript" src="MatrixMath.js"></script>
+   <script language="JavaScript" src="SmoothShaders.js"></script>
+   <script language="JavaScript" src="RenderBuffer.js"></script>
+   <script language="JavaScript" src="RenderEngine.js"></script>
+   <script language="JavaScript" src="ProjectionMatrix.js"></script>
+   
+   <script>
+      var renderBuffer = new RenderBuffer("canvas1");
+         
+      // Hardcode the list of vertices with the position at 0 and the color at 1
+      var positionIdx = 0;
+      var colorIdx = 1;
+      var verts = [
+         [multiplyVector(getRotationMatrix(360 / 5 * 2), [0.0, +1.0, 0, 1]), 
+      [1.0, 0.0, 0.0, 1.0]], // bottomLeft
+         [[ 0.0, +1.0, 0, 1], [1.0, 1.0, 0.0, 1.0]], // top
+         [multiplyVector(getRotationMatrix(360 / 5 * 3), [ 0.0, +1.0, 0, 1]), 
+      [0.0, 1.0, 0.0, 1.0]], // bottomRight
+         [multiplyVector(getRotationMatrix(360 / 5 * 1), [ 0.0, +1.0, 0, 1]), 
+      [0.0, 0.0, 1.0, 1.0]], // topLeft
+         [multiplyVector(getRotationMatrix(360 / 5 * 4), [ 0.0, +1.0, 0, 1]), 
+      [1.0, 0.0, 1.0, 1.0]], // topRight
+      ];
+      var indexList = [0, 1, 1, 2, 2, 3, 3, 4, 4, 0];
+         
+      // The render engine is used to draw primitives
+      var renderEngine = new RenderEngine(renderBuffer);
+         
+      // Make a projection matrix based on the aspect ratio
+      var aspectRatio = renderBuffer.width / renderBuffer.height;
+      var projMatrix = OrthoGraphicProjectionWithAspectRatio(aspectRatio);
+         
+      // Make our smooth color shaders
+      //var vertexShader = new MatrixSmoothVertShader(positionIdx, colorIdx, projMatrix);
+      var fragmentShader = new SmoothColorFragShader();
+         
+      // Draw our list of points with the two shaders
+      // (NOTE: main functions are NOT passed this time!)
+      //renderEngine.drawLines(verts, indexList, vertexShader, fragmentShader);
+         
+      // Make sure we can still draw points
+      var points = [
+         [[0, 0, 0, 1], [1.0, 1.0, 1.0, 1.0]]  // middle white
+      ];
+      //renderEngine.drawPoints(points, vertexShader, fragmentShader);
+      
+      // Flush it to make sure we draw
+      //renderBuffer.flush();
+      var transDegree = 0;
+      var degree = 0;  
+
+      timer = function()
+      {
+         //transDegree = (transDegree + 1) % 40;
+         degree = (degree + 1) % 360;
+         //var transMatrix = multiply4by4(getTranslationMatrix(degree / 20, 0, 0), projMatrix);
+         var rotateMatrix = multiply4by4(getRotationMatrix(degree), projMatrix);
+         var vertexShader = new MatrixSmoothVertShader(positionIdx, colorIdx, rotateMatrix);
+         renderEngine.setBackground([0, 0, 0, 1]);
+         renderEngine.drawLines(verts, indexList, vertexShader, fragmentShader);
+         renderBuffer.flush();
+      }
+ 
+      window.setInterval(timer, 1);
+
+   </script>
+</body>
+</html>

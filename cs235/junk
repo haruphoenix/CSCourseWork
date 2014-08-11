@@ -1,0 +1,415 @@
+Data: 3
+Left = 0x7fff48c13050
+Right = 0x7fff48c13028
+Left: 2
+Right: 1
+
+   3  Parent = NULL! 
+   2  Parent = 3   
+   1  Parent = 3   
+
+Data: 6
+Left = 0x7fff48c13438
+Right = 0x7fff48c13078
+Left: 3
+Right: 3
+
+   6  Parent = NULL! 
+   3  Parent = 6   
+   3  Parent = 6   
+   2  Parent = 6   
+   1  Parent = 6   
+
+Data: 9
+Left = 0x7fff48c130c8
+Right = 0x7fff48c130a0
+Left: 5
+Right: 4
+
+   9  Parent = NULL! 
+   5  Parent = 9   
+   4  Parent = 9   
+
+Data: 12
+Left = 0x7fff48c13460
+Right = 0x7fff48c130f0
+Left: 6
+Right: 6
+
+  12  Parent = NULL! 
+   6  Parent = 12   
+   6  Parent = 12   
+   3  Parent = 12   
+   3  Parent = 12   
+   2  Parent = 12   
+   1  Parent = 12   
+
+Data: 15
+Left = 0x7fff48c13140
+Right = 0x7fff48c13118
+Left: 8
+Right: 7
+
+  15  Parent = NULL! 
+   8  Parent = 15   
+   7  Parent = 15   
+
+Data: 18
+Left = 0x7fff48c13488
+Right = 0x7fff48c13168
+Left: 9
+Right: 9
+
+  18  Parent = NULL! 
+   9  Parent = 18   
+   9  Parent = 18   
+   5  Parent = 18   
+   4  Parent = 18   
+
+Data: 21
+Left = 0x7fff48c131b8
+Right = 0x7fff48c13190
+Left: 11
+Right: 10
+
+  21  Parent = NULL! 
+  11  Parent = 21   
+  10  Parent = 21   
+
+Data: 24
+Left = 0x7fff48c134b0
+Right = 0x7fff48c131e0
+Left: 12
+Right: 12
+
+  24  Parent = NULL! 
+  12  Parent = 24   
+  12  Parent = 24   
+   6  Parent = 24   
+   6  Parent = 24   
+   3  Parent = 24   
+   3  Parent = 24   
+   2  Parent = 24   
+   1  Parent = 24   
+
+Data: 27
+Left = 0x7fff48c13230
+Right = 0x7fff48c13208
+Left: 14
+Right: 13
+
+  27  Parent = NULL! 
+  14  Parent = 27   
+  13  Parent = 27   
+
+Data: 30
+Left = 0x7fff48c134d8
+Right = 0x7fff48c13258
+Left: 15
+Right: 15
+
+  30  Parent = NULL! 
+  15  Parent = 30   
+  15  Parent = 30   
+   8  Parent = 30   
+   7  Parent = 30   
+
+Data: 33
+Left = 0x7fff48c132a8
+Right = 0x7fff48c13280
+Left: 17
+Right: 16
+
+  33  Parent = NULL! 
+  17  Parent = 33   
+  16  Parent = 33   
+
+Data: 36
+Left = 0x7fff48c13500
+Right = 0x7fff48c132d0
+Left: 18
+Right: 18
+
+  36  Parent = NULL! 
+  18  Parent = 36   
+  18  Parent = 36   
+   9  Parent = 36   
+   9  Parent = 36   
+   5  Parent = 36   
+   4  Parent = 36   
+
+Data: 39
+Left = 0x7fff48c13320
+Right = 0x7fff48c132f8
+Left: 20
+Right: 19
+
+  39  Parent = NULL! 
+  20  Parent = 39   
+  19  Parent = 39   
+
+Data: 42
+Left = 0x7fff48c13528
+Right = 0x7fff48c13348
+Left: 21
+Right: 21
+
+  42  Parent = NULL! 
+  21  Parent = 42   
+  21  Parent = 42   
+  11  Parent = 42   
+  10  Parent = 42   
+
+Data: 45
+Left = 0x7fff48c13398
+Right = 0x7fff48c13370
+Left: 23
+Right: 22
+
+  45  Parent = NULL! 
+  23  Parent = 45   
+  22  Parent = 45   
+
+Data: 48
+Left = 0x7fff48c13550
+Right = 0x7fff48c133c0
+Left: 24
+Right: 24
+
+  48  Parent = NULL! 
+  24  Parent = 48   
+  24  Parent = 48   
+  12  Parent = 48   
+  12  Parent = 48   
+   6  Parent = 48   
+   6  Parent = 48   
+   3  Parent = 48   
+   3  Parent = 48   
+   2  Parent = 48   
+   1  Parent = 48   
+
+Data: 51
+Left = 0x7fff48c13410
+Right = 0x7fff48c133e8
+Left: 26
+Right: 25
+
+  51  Parent = NULL! 
+  26  Parent = 51   
+  25  Parent = 51   
+
+Data: 57
+Left = 0x7fff48c135a0
+Right = 0x7fff48c13578
+Left: 30
+Right: 27
+
+  57  Parent = NULL! 
+  30  Parent = 57   
+  27  Parent = 57   
+  15  Parent = 57   
+  15  Parent = 57   
+  14  Parent = 57   
+  13  Parent = 57   
+   8  Parent = 57   
+   7  Parent = 57   
+
+Data: 69
+Left = 0x7fff48c135f0
+Right = 0x7fff48c135c8
+Left: 36
+Right: 33
+
+  69  Parent = NULL! 
+  36  Parent = 69   
+  33  Parent = 69   
+  18  Parent = 69   
+  18  Parent = 69   
+  17  Parent = 69   
+  16  Parent = 69   
+   9  Parent = 69   
+   9  Parent = 69   
+   5  Parent = 69   
+   4  Parent = 69   
+
+Data: 81
+Left = 0x7fff48c13640
+Right = 0x7fff48c13618
+Left: 42
+Right: 39
+
+  81  Parent = NULL! 
+  42  Parent = 81   
+  39  Parent = 81   
+  21  Parent = 81   
+  21  Parent = 81   
+  20  Parent = 81   
+  19  Parent = 81   
+  11  Parent = 81   
+  10  Parent = 81   
+
+Data: 93
+Left = 0x7fff48c13690
+Right = 0x7fff48c13668
+Left: 48
+Right: 45
+
+  93  Parent = NULL! 
+  48  Parent = 93   
+  45  Parent = 93   
+  24  Parent = 93   
+  24  Parent = 93   
+  23  Parent = 93   
+  22  Parent = 93   
+  12  Parent = 93   
+  12  Parent = 93   
+   6  Parent = 93   
+   6  Parent = 93   
+   3  Parent = 93   
+   3  Parent = 93   
+   2  Parent = 93   
+   1  Parent = 93   
+
+Data: 108
+Left = 0x7fff48c136e0
+Right = 0x7fff48c136b8
+Left: 57
+Right: 51
+
+ 108  Parent = NULL! 
+  57  Parent = 108   
+  51  Parent = 108   
+  30  Parent = 108   
+  27  Parent = 108   
+  26  Parent = 108   
+  25  Parent = 108   
+  15  Parent = 108   
+  15  Parent = 108   
+  14  Parent = 108   
+  13  Parent = 108   
+   8  Parent = 108   
+   7  Parent = 108   
+
+Data: 150
+Left = 0x7fff48c13730
+Right = 0x7fff48c13708
+Left: 81
+Right: 69
+
+ 150  Parent = NULL! 
+  81  Parent = 150   
+  69  Parent = 150   
+  42  Parent = 150   
+  39  Parent = 150   
+  36  Parent = 150   
+  33  Parent = 150   
+  21  Parent = 150   
+  21  Parent = 150   
+  20  Parent = 150   
+  19  Parent = 150   
+  18  Parent = 150   
+  18  Parent = 150   
+  17  Parent = 150   
+  16  Parent = 150   
+  11  Parent = 150   
+  10  Parent = 150   
+   9  Parent = 150   
+   9  Parent = 150   
+   5  Parent = 150   
+   4  Parent = 150   
+
+Data: 201
+Left = 0x7fff48c13780
+Right = 0x7fff48c13758
+Left: 108
+Right: 93
+
+ 201  Parent = NULL! 
+ 108  Parent = 201   
+  93  Parent = 201   
+  57  Parent = 201   
+  51  Parent = 201   
+  48  Parent = 201   
+  45  Parent = 201   
+  30  Parent = 201   
+  27  Parent = 201   
+  26  Parent = 201   
+  25  Parent = 201   
+  24  Parent = 201   
+  24  Parent = 201   
+  23  Parent = 201   
+  22  Parent = 201   
+  15  Parent = 201   
+  15  Parent = 201   
+  14  Parent = 201   
+  13  Parent = 201   
+  12  Parent = 201   
+  12  Parent = 201   
+   8  Parent = 201   
+   7  Parent = 201   
+   6  Parent = 201   
+   6  Parent = 201   
+   3  Parent = 201   
+   3  Parent = 201   
+   2  Parent = 201   
+   1  Parent = 201   
+
+Data: 351
+Left = 0x7fff48c137d0
+Right = 0x7fff48c137a8
+Left: 201
+Right: 150
+
+ 351  Parent = NULL! 
+ 201  Parent = 351   
+ 150  Parent = 351   
+ 108  Parent = 351   
+  93  Parent = 351   
+  81  Parent = 351   
+  69  Parent = 351   
+  57  Parent = 351   
+  51  Parent = 351   
+  48  Parent = 351   
+  45  Parent = 351   
+  42  Parent = 351   
+  39  Parent = 351   
+  36  Parent = 351   
+  33  Parent = 351   
+  30  Parent = 351   
+  27  Parent = 351   
+  26  Parent = 351   
+  25  Parent = 351   
+  24  Parent = 351   
+  24  Parent = 351   
+  23  Parent = 351   
+  22  Parent = 351   
+  21  Parent = 351   
+  21  Parent = 351   
+  20  Parent = 351   
+  19  Parent = 351   
+  18  Parent = 351   
+  18  Parent = 351   
+  17  Parent = 351   
+  16  Parent = 351   
+  15  Parent = 351   
+  15  Parent = 351   
+  14  Parent = 351   
+  13  Parent = 351   
+  12  Parent = 351   
+  12  Parent = 351   
+  11  Parent = 351   
+  10  Parent = 351   
+   9  Parent = 351   
+   9  Parent = 351   
+   8  Parent = 351   
+   7  Parent = 351   
+   6  Parent = 351   
+   6  Parent = 351   
+   5  Parent = 351   
+   4  Parent = 351   
+   3  Parent = 351   
+   3  Parent = 351   
+   2  Parent = 351   
+   1  Parent = 351   
+
+Message: hello world

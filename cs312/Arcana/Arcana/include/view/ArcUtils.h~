@@ -1,0 +1,8 @@
+#ifndef UTILS_H
+#define UTILS_H
+#include <GL/glew.h>
+
+void ExitOnGLError(const char* errorMessage);
+GLuint LoadShader(const char* filename, GLenum shaderType);
+
+#endif

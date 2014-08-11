@@ -1,0 +1,187 @@
+#include "SDL/SDL.h"
+#include "SDL/SDL_opengl.h"
+#include <iostream>
+#include "ArcTimer.h"
+
+// Screen Attributes
+const int SCREEN_WIDTH = 640;
+const int SCREEN_HEIGHT = 480;
+const int SCREEN_BPP = 32;
+
+// The frame rate
+const int FRAMES_PER_SECOND = 60;
+
+// Event handler
+SDL_Event event;
+
+bool init();
+bool initGL();
+void handleKeys(unsigned char key, int x, int y);
+void update();
+void render();
+void clean_up();
+
+int main(int argc, char** argv)
+{
+
+  // Quit flag
+  bool quit = false;
+
+  // Initialize
+  if (init() == false)
+  {
+    return 1;
+  }
+
+  // The frame rate regulator
+  ArcTimer fps;
+
+  while (!quit)
+  {
+    fps.start();
+
+    // While there are events to handle
+    while (SDL_PollEvent(&event))
+    {
+      if (event.type == SDL_QUIT)
+      {
+        quit = true;
+      }
+      else if (event.type == SDL_KEYDOWN)
+      {
+        // Handle keypress with current mouse position
+        int x = 0;
+        int y = 0;
+        SDL_GetMouseState(&x, &y);
+        handleKeys(event.key.keysym.unicode, x, y);
+      }
+    }
+  
+    // Run frame update
+    update();
+
+    // Render frame
+    render();
+
+    // Cap the frame rate
+    if (fps.getTicks() < 1000 / FRAMES_PER_SECOND)
+    {
+      SDL_Delay((1000 / FRAMES_PER_SECOND) - fps.getTicks());
+    }
+  }
+
+  // Clean up
+  clean_up();
+
+  return 0;
+}
+
+/*
+ * Clears screen, then re-renders
+ */
+void render()
+{
+  // Clear color buffer
+  glClear(GL_COLOR_BUFFER_BIT);
+
+    glBegin(GL_QUADS);
+    //
+    glColor4f(1.0f, 1.0f, 0.0f, 1.0f);
+    glVertex2f(-0.5f, -0.5f);
+    glVertex2f( 0.5f, -0.5f);
+    glVertex2f( 0.5f,  0.5f);
+    glVertex2f(-0.5f,  0.5f);
+    //
+    glEnd();
+
+  // Update screen
+  SDL_GL_SwapBuffers();
+}
+
+
+/*
+ * Doesn't do anything yet
+ */
+void update()
+{
+  
+}
+
+/*
+ * Will be used to handle keys & Mouse position
+ */
+void handleKeys(unsigned char key, int x, int y)
+{
+
+  // Toggle quad
+  if (key == 'q')
+  {
+  }
+}
+
+/*
+ * Initialize OpenGL
+ */
+bool initGL()
+{
+  //Initialize Projection Matrix
+  glMatrixMode(GL_PROJECTION);
+  glLoadIdentity();
+
+  // Initialize Modelview Matrix
+  glMatrixMode(GL_MODELVIEW);
+  glLoadIdentity();
+
+  // Initialize clear color
+  glClearColor(0.f, 0.f, 0.f, 1.f);
+
+  //Check for error
+  GLenum error = glGetError();
+  if (error != GL_NO_ERROR)
+  {
+    printf("Error initializing OpenGL! %s\n", gluErrorString(error));
+    return false;
+  }
+
+  return true;
+}
+
+/*
+ * Initialize SDL, Window, and OpenGL
+ *
+ */
+bool init()
+{
+  // Initialize SDL
+  if (SDL_Init(SDL_INIT_EVERYTHING) < 0)
+  {
+    return false;
+  }
+
+  // Create Window
+  if (SDL_SetVideoMode(SCREEN_WIDTH, SCREEN_HEIGHT, SCREEN_BPP, SDL_OPENGL) == NULL)
+  {
+    return false;
+  }
+
+  // Initialize Unicode
+  SDL_EnableUNICODE(SDL_ENABLE);
+
+  // Initialize OpenGL
+  if (initGL() == false)
+  {
+    return false;
+  }
+
+  // Set caption
+  SDL_WM_SetCaption("OpenGL Test", NULL);
+
+  return true;
+}
+
+void clean_up()
+{
+  // Quit SDL
+  SDL_Quit();
+}
+

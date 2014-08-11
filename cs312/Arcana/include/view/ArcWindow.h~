@@ -1,0 +1,20 @@
+#ifndef WINDOW_H
+#define WINDOW_H
+
+class ArcWindow
+{
+public:
+  ArcWindow();
+  bool initialize();
+  void update();
+  void resize(int width, int height);
+  void destroy();
+  int getWidth()  {return mWidth; };
+  int getHeight() {return mHeight;};
+private:
+  int mHeight;
+  int mWidth;
+  int mBPP;
+};
+
+#endif

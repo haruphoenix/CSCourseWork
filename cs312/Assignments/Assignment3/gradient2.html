@@ -1,0 +1,37 @@
+<!DOCTYPE HTML>
+<html lang = "en">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="device-width">
+		<link type="text/css" rel="stylesheet" media="screen" href="gradient.css"/>
+		<script language = "javascript" type="text/javascript" src="SceneDrawer.js"></script>
+		<title>Drawing on a Canvas</title>
+	</head>
+	<body>
+		<header>
+		</header>
+		<main>
+			<canvas id="myCanvas", width="500", height="100"></canvas>
+			<script>
+			        // Initialize imgData object from canvas object
+				var canvas = document.getElementById("myCanvas");
+				var canvasContext = canvas.getContext("2d");
+				var imgData = canvasContext.createImageData(canvas.width, canvas.height);
+
+				// Set Assigned Colors
+				var upperLeft  = color(1, 0, 1  , 1);
+				var upperRight = color(1, 1, 0  , 1);
+				var lowerLeft  = color(0, 0, 0.5, 1);
+				var lowerRight = color(0, 0, 0  , 1);
+
+				// Draw Gradient
+				drawGradient(imgData, upperLeft, upperRight, lowerLeft, lowerRight);
+
+				// Display Gradient to the Screen
+				canvasContext.putImageData(imgData, 0, 0);
+			</script>
+		</main>
+		<footer>
+		</footer>
+	</body>
+</html>

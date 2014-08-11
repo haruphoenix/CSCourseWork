@@ -1,0 +1,94 @@
+<!DOCTYPE HTML>
+<html lang = "en">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="device-width">
+		<link type="text/css" rel="stylesheet" media="screen" href="gradient.css"/>
+		<script language = "javascript" type="text/javascript" src="gradient.js"></script>
+		<title>Drawing on a Canvas</title>
+	</head>
+	<body>
+		<header>
+		</header>
+		<main>
+			<canvas id="myCanvas", width="600", height="600"></canvas>
+			<script>
+				var canvas = document.getElementById("myCanvas");
+				var canvasContext = canvas.getContext("2d");
+				var size = 600;
+				var imgData = canvasContext.createImageData(size, size);
+				var RED   = 0;
+				var GREEN = 1;
+				var BLUE  = 2;
+				var ALPHA = 3;
+				var PIXEL = 4;
+				var MAX   = 255;
+				var RATIO = MAX / size;
+				var TOP_LEFT     = 0;
+				var TOP_RIGHT    = 1;
+				var BOTTOM_LEFT  = 2;
+				var BOTTOM_RIGHT = 3;
+				
+				function setPixel(imgData, x, y, r, g, b, a)
+				{
+					var color = ((y * imgData.width * PIXEL) + (x * PIXEL));
+				        var red   = color + RED;
+					var green = color + GREEN;
+					var blue  = color + BLUE;
+					var alpha = color + ALPHA;
+					imgData.data[red  ] = r;
+					imgData.data[green] = g;
+					imgData.data[blue ] = b;
+					imgData.data[alpha] = a;
+				}
+
+				function setGradient(imgData, colorOne, colorTwo, corner)
+				{
+				   var size = imgData.width / 4;
+				   var colors = new Array(0, 0, 0);
+				   switch (corner)
+				   {
+				      case 0:
+				          for (var x = 0; x < size; x++)
+					  {
+					      colors[colorOne] = 0;
+					      for (var y = 0; y < size; y++)
+					      {
+						  setPixel(imgData, x, y, r * RATIO, g * RATIO, 0, MAX);
+						  colors[colorOne]++;
+					      }
+					      colors[colorTwo]++;
+					  }
+				          break;
+				      case 1:
+                                          break;
+				      case 2:
+                                          break;
+				      case 3:
+                                          break;
+                                      default:
+                                          break;
+				   }
+				}
+
+				setGradient(imgData, RED, GREEN, TOP_LEFT);
+
+				//var r = 0;
+				//var g = 0;
+				//for (var x = 0; x < size; x++)
+				//{
+				//	r = 0;
+				//	for (var y = 0; y < size; y++)
+				//	{
+				//		setPixel(imgData, x, y, r * RATIO, g * RATIO, 0, MAX);
+				//		r++;
+				//	}
+				//	g++;
+				//}
+				canvasContext.putImageData(imgData, 0, 0);
+			</script>
+		</main>
+		<footer>
+		</footer>
+	</body>
+</html>

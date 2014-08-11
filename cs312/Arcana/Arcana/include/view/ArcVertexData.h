@@ -1,0 +1,50 @@
+
+#ifndef ARCVERTDATA_H
+#define ARCVERTDATA_H
+#include "ArcUtils.h"
+#include "ArcMath.h"
+#include <GL/glew.h>
+#include <list>
+
+class ArcVertexData
+{
+ public:
+  ArcVertexData();
+  ~ArcVertexData();
+  void addVertices(int size, const ArcVertex vertices[]);
+  void addIndices (int size, const GLuint indices[]);
+  void addVertex(ArcVertex v)    {mVertices.push_back(v) ;};
+  void addIndex(GLuint i)        {mIndices .push_back(i) ;};
+  std::list<ArcVertex>& getVertices() {return mVertices  ;};
+  std::list<GLuint>&    getIndices()  {return mIndices   ;};
+  int getVertexSize()            {return mVertices.size();};
+  int getIndexSize()             {return mIndices .size();};
+  void clear()                   {mVertices.clear(); mIndices.clear();};
+  void destroy();
+  void loadData(const char* filename);
+  void exportData(const char* filename);
+  void loadData(std::list<ArcVertex> v, std::list<GLuint> i);
+  void formArrays();
+  void setPosition(float x, float y, float z);
+  void setRotation(float x, float y, float z);
+  void setScale   (float x, float y, float z);
+  ArcMatrix getModelMatrix();
+  ArcVertex* getVertexArray();
+  GLuint*  getIndexArray();
+  int getNumVertices();
+  int getNumIndices();
+ private:
+  std::list<ArcVertex> mVertices;
+  std::list<GLuint>    mIndices;
+  ArcVertex*           mVertexArray;
+  GLuint*              mIndexArray;
+  int                  mVertexSize;
+  int                  mIndexSize;
+  ArcVector            mPosition;
+  ArcVector            mRotation;
+  ArcVector            mScale;
+  ArcMatrix            mModelMatrix;
+  void                 setMatrix();
+};
+
+#endif
