@@ -1,0 +1,26 @@
+show help
+make all build directories (if necessary)
+connect to the project home directory
+connect to a module home directory given the module name (outer.inner)
+connect to the system module home directory
+connect to the service module home directory
+connect to the desktop module home directory
+build java source files in a module
+connect to the system module home directory and build it
+connect to the service module home directory and build it
+connect to the desktop module home directory and build it
+build all modules and then connect to the project home directory
+build all modules, connect to the project home directory and make the project jar
+build all modules, connect to the project home, and run via command line
+build all modules, connect to the project home directory, make the project jar and run using the jar
+wipe (clean up, or remove) all build artifacts
+make jar
+run project from command line
+run project from jar
+makes all .jpg files from all .uxf files in $PH/docs
+repackage and/or beautify code
+generate javadocs
+generate a key store
+sign jar with a self-signed certificate
+build tests
+run tests

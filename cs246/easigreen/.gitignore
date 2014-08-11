@@ -1,0 +1,26 @@
+# Third-party libraries will be retrieved online as needed.
+lib
+build
+*.class
+*~
+*#
+
+# Package Files #
+*.jar
+*.war
+*.ear
+
+# For NetBeans
+*.mf
+*.xml
+nbproject
+
+# For Eclipse/Android
+.classpath
+.project
+bin
+gen
+libs
+res
+project.properties
+proguard.cfg
